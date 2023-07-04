@@ -30,6 +30,8 @@ func getTimeZones(timeZone string) string {
 		timeGap = "+11:00"
 	case "MYT":
 		timeGap = "+8:00"
+        case "UTC":
+		timeGap = "+0:00"
 	default:
 		fmt.Printf(Red+"Invalid Timezone : %v\n"+Reset, timeZone)
 		os.Exit(0)
