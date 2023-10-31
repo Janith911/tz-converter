@@ -30,8 +30,12 @@ func getTimeZones(timeZone string) string {
 		timeGap = "+11:00"
 	case "MYT":
 		timeGap = "+8:00"
-        case "UTC":
+	case "UTC":
 		timeGap = "+0:00"
+	case "EST":
+		timeGap = "-5:00"
+	case "EDT":
+		timeGap = "-4:00"
 	default:
 		fmt.Printf(Red+"Invalid Timezone : %v\n"+Reset, timeZone)
 		os.Exit(0)
@@ -106,7 +110,9 @@ func main() {
 		fromGapMinutes := splitTime(local_timegap)
 		fromTimeMinutes := splitTime(time_now)
 		calculatedTime, tartget_day := prefferedTime(targetGapMinutes, fromGapMinutes, fromTimeMinutes)
-		fmt.Printf(White+"Local Time \t: %v\n", time_now)
+		t := time.Now()
+		date := fmt.Sprintf("%d-%02d-%02d", t.Day(), t.Month(), t.Year())
+		fmt.Printf(White+"Local Time \t: %v (%v)\n", time_now, date)
 		fmt.Printf(Yellow+"%v Time \t: %v\n"+Reset, strings.ToUpper(cliArgs[2]), calculatedTime)
 		fmt.Printf(White+"Day \t\t: %v\n", tartget_day)
 	} else {
